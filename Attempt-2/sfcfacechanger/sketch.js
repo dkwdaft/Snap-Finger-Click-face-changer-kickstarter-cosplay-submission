@@ -15,7 +15,7 @@ let selected = -1;
 function preload() 
 {
 	// Wick Face  Mask Filter asset
-	imgWickMask = loadImage("wick.PNG");
+	imgWickMask = loadImage("wick.jpg");
 
 	//  Pixel Sali Mask Filter asset
 	imgWickMask = loadImage("sali.PNG");
