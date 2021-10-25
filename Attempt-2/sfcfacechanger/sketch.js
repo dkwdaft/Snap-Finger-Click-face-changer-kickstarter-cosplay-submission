@@ -15,10 +15,10 @@ let selected = -1;
 function preload() 
 {
 	// Wick Face  Mask Filter asset
-	imgWickMask = loadImage("wick.jpg");
+	imgWickMask = loadImage("assets/wick.png");
 
 	//  Pixel Sali Mask Filter asset
-	imgWickMask = loadImage("sali.PNG");
+	imgPixelSaliMask = loadImage("assets/sali.PNG");
 }
 /**
  * In p5.js, `setup()` function is executed at the beginning of our program, but after the `preload()` function.
