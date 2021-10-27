@@ -4,7 +4,10 @@ let outputHeight;
 let faceTracker; // Face Tracking
 let videoInput;
 
-let imgWickMask;
+let imgWickFace;
+
+let imgWickMask
+
 let imgPixelSaliMask;
 
 let selected = -1;
@@ -14,8 +17,11 @@ let selected = -1;
 */
 function preload() 
 {
-	// Wick Face  Mask Filter asset
-	imgWickMask = loadImage("assets/wick.png");
+	// Wick Face  Filter asset
+	imgWickFace = loadImage("assets/wick.png");
+
+	// Wick  Mask Filter asset
+	imgWickMask = loadImage("assets/Wick_Mask.png");
 
 	//  Pixel Sali Mask Filter asset
 	imgPixelSaliMask = loadImage("assets/sali.PNG");
@@ -39,7 +45,7 @@ function setup()
 
 	// select filter
 	const sel = createSelect();
-	const selectList = ['Wick Van Dank Mask','Sali Mask'];
+	const selectList = ['Wick Van Dank Face','Wick Van Dank Mask ()','Sali Mask'];
 	sel.option('Select Filter', -1);
 	for (let i = 0; i < selectList.length; i++)
 	{
@@ -70,12 +76,27 @@ function draw()
 	switch(selected)
 	{
 		case '-1': break;
-		case '0': drawWickMask(); break;
-		case '1': drawSaliMask(); break;
+		case '0': drawWickFace(); break;
+		case '1': drawWickMask(); break;
+		case '2': drawSaliMask(); break;
 	}
 }
 
-// Wick Mask Filter
+// Wick Face Filter
+function drawWickFace()
+{
+	const positions = faceTracker.getCurrentPosition();
+	if (positions !== false)
+	{
+		push();
+		const wx = Math.abs(positions[13][0] - positions[1][0]) * 1.2; // The width is given by the face width, based on the geometry
+		const wy = Math.abs(positions[7][1] - Math.min(positions[16][1], positions[20][1])) * 1.2; // The height is given by the distance from nose to chin, times 2
+		translate(-wx/2, -wy/2);
+		image(imgWickFace, positions[62][0], positions[62][1], wx, wy); // Show the mask at the center of the face
+		pop();
+	}
+}
+
 function drawWickMask()
 {
 	const positions = faceTracker.getCurrentPosition();
