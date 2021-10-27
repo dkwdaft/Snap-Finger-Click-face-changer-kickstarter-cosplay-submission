@@ -45,7 +45,7 @@ function setup()
 
 	// select filter
 	const sel = createSelect();
-	const selectList = ['Wick Van Dank Face','Wick Van Dank Mask ()','Sali Mask'];
+	const selectList = ['Wick Van Dank Face','Wick Van Dank Mask (experimental)','Sali Mask'];
 	sel.option('Select Filter', -1);
 	for (let i = 0; i < selectList.length; i++)
 	{
